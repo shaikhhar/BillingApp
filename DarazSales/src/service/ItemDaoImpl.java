@@ -161,4 +161,27 @@ public class ItemDaoImpl implements ItemDao {
 		return false;
 	}
 
+	@Override
+	public List<Item> search(String s) {
+		List<Item> itemlist = new ArrayList<>();
+		Connection con = DB.getDbCon();
+		String sql = "select * from stock where item_no like "+"\"%"+s+"%\""+"or item_name like "+"\"%"+s+"%\"";
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				Item i = new Item();
+				i.setItem_no(rs.getInt("item_no"));
+				i.setItem_name(rs.getString("item_name"));
+				i.setQuantity(rs.getInt("quantity"));
+				i.setMrp(rs.getInt("mrp"));
+				itemlist.add(i);				
+			}	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return itemlist;
+	}
+
 }

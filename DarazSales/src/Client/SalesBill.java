@@ -11,7 +11,12 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +35,9 @@ import service.ItemDao;
 import service.ItemDaoImpl;
 
 import javax.swing.JComboBox;
+
+import java.awt.print.*;
+import javafx.print.*;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -60,6 +68,7 @@ public class SalesBill extends JFrame {
 	private JLabel lblTotal;
 	private JTextField textTotal;
 	private JButton btnPrint;
+	private JButton btnReceipt;
 
 	/**
 	 * Launch the application.
@@ -112,6 +121,7 @@ public class SalesBill extends JFrame {
 		contentPane.add(getLblTotal());
 		contentPane.add(getTextTotal());
 		contentPane.add(getBtnPrint());
+		contentPane.add(getBtnReceipt());
 	}
 
 	private JLabel getLblNewLabel() {
@@ -453,11 +463,27 @@ public class SalesBill extends JFrame {
 			btnPrint.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
+					File fp = new File("Bill.txt");
+					try {
+						FileWriter fw = new FileWriter(fp,true);
+						fw.write(Calendar.getInstance().getTime().toString()+"\nInvoice Detail:\n" );
+						
+						fw.append((CharSequence) table);
+						fw.write("\n\nTotal: "+textTotal.getText());
+						fw.write("Thank you for shopping with us.");
+						BufferedWriter bw = new BufferedWriter(fw);
+												
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
 					MessageFormat header = new MessageFormat(Calendar.getInstance().getTime().toString());
-					MessageFormat footer = new MessageFormat(textTotal.getText());
+					MessageFormat footer = new MessageFormat("Total: "+textTotal.getText());
 					
 					try {
-						table.print(PrintMode.NORMAL, header, footer);
+						table.print(PrintMode.NORMAL,header,footer);
 				
 					} catch (PrinterException e) {
 						// TODO Auto-generated catch block
@@ -468,5 +494,40 @@ public class SalesBill extends JFrame {
 			btnPrint.setBounds(312, 371, 89, 23);
 		}
 		return btnPrint;
+	}
+	private JButton getBtnReceipt() {
+		if (btnReceipt == null) {
+			btnReceipt = new JButton("Receipt");
+			btnReceipt.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					List<Bill> lb= getReceipt(); 
+					new Receipt(lb).setVisible(true);; // creating new receipt object, passing billlist and opening the frame
+					}
+			});
+			btnReceipt.setBounds(312, 405, 89, 23);
+		}
+		return btnReceipt;
+	}
+	public List<Bill> getReceipt(){
+		
+		List<Bill> BillList= new ArrayList<>();
+		int row = table.getRowCount();
+		for(int i=0;i<row;i++){
+			Bill b = new Bill();
+			long date1 = dateChooser.getDate().getTime();
+			java.sql.Date date = new java.sql.Date(date1);
+			b.setDate(date);
+			b.setItem_no((int) table.getValueAt(i, 0));
+			b.setItem_name((String) table.getValueAt(i, 1));
+			b.setQty((int) table.getValueAt(i, 2));
+			b.setMrp((int) table.getValueAt(i, 3));
+			b.setDiscount((int) table.getValueAt(i, 4));
+			b.setAmount((int) table.getValueAt(i, 5)); 
+			b.setCus_name(textCust.getText());
+			b.setBill_no(Integer.parseInt(textBill.getText()));
+			BillList.add(b);
+			
+		}		
+		return BillList;
 	}
 }

@@ -12,6 +12,6 @@ public interface ItemDao {
 	boolean itemExists(int item_no);
 	Item getItemById(int item_no);
 	boolean changeStock(int item_no, int addition);
-	
+	List<Item> search(String s);
 }
  

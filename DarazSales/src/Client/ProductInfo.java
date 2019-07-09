@@ -20,6 +20,8 @@ import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ProductInfo extends JFrame {
 
@@ -39,11 +41,13 @@ public class ProductInfo extends JFrame {
 				try {
 					ProductInfo frame = new ProductInfo();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -60,6 +64,7 @@ public class ProductInfo extends JFrame {
 		contentPane.add(getLblProduct());
 		contentPane.add(getTextField());
 		contentPane.add(getScrollPane());
+		populateStock();
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -79,6 +84,14 @@ public class ProductInfo extends JFrame {
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
+			textField.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String key = textField.getText();
+					populateSearchedStock(key);
+				}
+			});
+			
 			textField.setBounds(267, 69, 143, 20);
 			textField.setColumns(10);
 		}
@@ -113,9 +126,18 @@ public class ProductInfo extends JFrame {
 		for(Item i: itemlist){
 			t.addRow(new Object[]{i.getItem_no(),i.getItem_name(),i.getQuantity(),i.getMrp()});
 			
-		}
+		}	
+	}
+	
+	public void populateSearchedStock(String s){
+		DefaultTableModel t1 = (DefaultTableModel) table.getModel();
+		ItemDao idao = new ItemDaoImpl();
+		List<Item> itemlist = idao.search(s);
+		t1.setRowCount(0);
 		
-		
-		
+		for(Item i: itemlist){
+			t1.addRow(new Object[]{i.getItem_no(),i.getItem_name(),i.getQuantity(),i.getMrp()});
+			
+		}	
 	}
 }
