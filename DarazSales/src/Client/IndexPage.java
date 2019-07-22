@@ -46,7 +46,7 @@ public class IndexPage extends JFrame {
 	 * Create the frame.
 	 */
 	public IndexPage() {
-		setTitle("Daraz Bill System");
+		setTitle("Billing app");
 		setBackground(new Color(0, 0, 128));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 300);
@@ -75,7 +75,7 @@ public class IndexPage extends JFrame {
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("Welcome to Daraz Billing System");
+			lblNewLabel = new JLabel("Welcome to Billing App");
 			lblNewLabel.setBounds(97, 0, 315, 32);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblNewLabel.setForeground(new Color(0, 0, 128));
