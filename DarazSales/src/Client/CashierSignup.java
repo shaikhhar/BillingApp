@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
@@ -68,6 +69,7 @@ public class CashierSignup extends JFrame {
 	 * Create the frame.
 	 */
 	public CashierSignup() {
+		setTitle("Signup");
 		setBackground(new Color(51, 204, 204));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 469);
@@ -244,6 +246,7 @@ public class CashierSignup extends JFrame {
 	private JLabel getLabel_6() {
 		if (lblClickHereTo == null) {
 			lblClickHereTo = new JLabel("Click here to Login");
+			lblClickHereTo.setForeground(Color.BLUE);
 			lblClickHereTo.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
@@ -253,7 +256,7 @@ public class CashierSignup extends JFrame {
 					
 				}
 			});
-			lblClickHereTo.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblClickHereTo.setFont(new Font("Tahoma",Font.BOLD, 12));
 			lblClickHereTo.setBounds(204, 368, 166, 14);
 		}
 		return lblClickHereTo;
@@ -268,8 +271,9 @@ public class CashierSignup extends JFrame {
 					dispose();
 				}
 			});
-			btnExit.setBounds(229, 397, 57, 23);
+			btnExit.setBounds(209, 397, 87, 23);
 		}
+		btnExit.setIcon(new ImageIcon("Image/exit-icon.png"));
 		return btnExit;
 	}
 	private JDateChooser getDateCh() {

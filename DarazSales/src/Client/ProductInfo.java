@@ -1,14 +1,11 @@
 package Client;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import model.Item;
 import service.ItemDao;
 import service.ItemDaoImpl;
@@ -22,6 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProductInfo extends JFrame {
 
@@ -31,6 +31,7 @@ public class ProductInfo extends JFrame {
 	private JTextField textField;
 	private JScrollPane scrollPane;
 	private JTable table;
+	private JButton btnExit;
 
 	/**
 	 * Launch the application.
@@ -64,6 +65,7 @@ public class ProductInfo extends JFrame {
 		contentPane.add(getLblProduct());
 		contentPane.add(getTextField());
 		contentPane.add(getScrollPane());
+		contentPane.add(getBtnExit());
 		populateStock();
 	}
 	private JLabel getLblNewLabel() {
@@ -139,5 +141,17 @@ public class ProductInfo extends JFrame {
 			t1.addRow(new Object[]{i.getItem_no(),i.getItem_name(),i.getQuantity(),i.getMrp()});
 			
 		}	
+	}
+	private JButton getBtnExit() {
+		if (btnExit == null) {
+			btnExit = new JButton("Exit");
+			btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			btnExit.setBounds(38, 291, 89, 23);
+		}
+		return btnExit;
 	}
 }

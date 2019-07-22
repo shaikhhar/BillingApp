@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -22,11 +23,14 @@ import service.ItemDaoImpl;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.awt.Font;
 
 public class StockUpdate extends JFrame {
 	private JLabel textItemId;
@@ -44,6 +48,9 @@ public class StockUpdate extends JFrame {
 	private JScrollPane scrollPane;
 	private JTable tableStock;
 	private JButton btnDelete;
+	private JButton btnExit;
+	private JLabel lblSearch;
+	private JTextField textSearch;
 
 	/**
 	 * Launch the application.
@@ -89,6 +96,9 @@ public class StockUpdate extends JFrame {
 		contentPane.add(getTextMrp());
 		contentPane.add(getScrollPane());
 		contentPane.add(getBtnDelete());
+		contentPane.add(getBtnExit());
+		contentPane.add(getLblSearch());
+		contentPane.add(getTextSearch());
 		populateStock();
 	}
 
@@ -165,8 +175,10 @@ public class StockUpdate extends JFrame {
 					}
 				}
 			});
-			btnAdd.setBounds(26, 182, 89, 23);
+			btnAdd.setBounds(26, 182, 95, 23);
 		}
+		ImageIcon ic = new ImageIcon("Image/add-icon.png");
+		btnAdd.setIcon(ic);
 		return btnAdd;
 	}
 
@@ -200,8 +212,10 @@ public class StockUpdate extends JFrame {
 					
 				}
 			});
-			btnUpdate.setBounds(25, 227, 89, 23);
+			btnUpdate.setBounds(25, 227, 95, 23);
 		}
+		ImageIcon ic = new ImageIcon("Image/update-icon.png");
+		btnUpdate.setIcon(ic);
 		return btnUpdate;
 	}
 
@@ -253,7 +267,7 @@ public class StockUpdate extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(306, 11, 423, 340);
+			scrollPane.setBounds(306, 59, 423, 292);
 			scrollPane.setViewportView(getTable());
 		}
 		return scrollPane;
@@ -279,6 +293,10 @@ public class StockUpdate extends JFrame {
 			tableStock.setModel(new DefaultTableModel(new Object[][] {},
 					new String[] { "Item_no", "Item_name", "Quantity", "MRP" }));
 		}
+		
+		tableStock.getColumnModel().getColumn(0).setPreferredWidth(60);
+		tableStock.getColumnModel().getColumn(1).setPreferredWidth(220);
+		
 		return tableStock;
 	}
 
@@ -318,8 +336,57 @@ public class StockUpdate extends JFrame {
 					}					
 				}
 			});
-			btnDelete.setBounds(25, 274, 89, 23);
+			ImageIcon ic = new ImageIcon("Image/Button-Delete-icon.png");
+			btnDelete.setIcon(ic);
+			btnDelete.setBounds(25, 274, 95, 23);
 		}
 		return btnDelete;
+	}
+	private JButton getBtnExit() {
+		if (btnExit == null) {
+			btnExit = new JButton("Exit");
+			btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			btnExit.setBounds(31, 347, 89, 23);
+		}
+		return btnExit;
+	}
+	private JLabel getLblSearch() {
+		if (lblSearch == null) {
+			lblSearch = new JLabel("Search");
+			lblSearch.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblSearch.setBounds(366, 27, 69, 14);
+		}
+		return lblSearch;
+	}
+	private JTextField getTextSearch() {
+		if (textSearch == null) {
+			textSearch = new JTextField();
+			textSearch.setBounds(442, 24, 167, 20);
+			textSearch.setColumns(10);
+			textSearch.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					String key = textSearch.getText();
+					populateSearchedStock(key);
+				}
+			});
+		}
+		return textSearch;
+	}
+	
+	public void populateSearchedStock(String s){
+		DefaultTableModel t1 = (DefaultTableModel) tableStock.getModel();
+		ItemDao idao = new ItemDaoImpl();
+		List<Item> itemlist = idao.search(s);
+		t1.setRowCount(0);
+		
+		for(Item i: itemlist){
+			t1.addRow(new Object[]{i.getItem_no(),i.getItem_name(),i.getQuantity(),i.getMrp()});
+			
+		}	
 	}
 }

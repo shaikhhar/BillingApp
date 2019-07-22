@@ -23,7 +23,6 @@ public class AdminHome extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblSearchBill;
 	private JLabel lblProductInfo;
-	private JLabel lblSales;
 	private JButton btnExit;
 	private JLabel label;
 
@@ -65,7 +64,6 @@ public class AdminHome extends JFrame {
 			panel.add(getLblNewLabel());
 			panel.add(getLblSearchBill());
 			panel.add(getLblProductInfo());
-			panel.add(getLblSales());
 			panel.add(getBtnExit());
 			panel.add(getLabel_3());
 		}
@@ -82,7 +80,7 @@ public class AdminHome extends JFrame {
 				}
 			});
 			lblNewLabel.setIcon(new ImageIcon(AdminHome.class.getResource("/javax/swing/plaf/metal/icons/ocean/upFolder.gif")));
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblNewLabel.setBounds(140, 30, 103, 14);
 		}
 		return lblNewLabel;
@@ -90,9 +88,18 @@ public class AdminHome extends JFrame {
 	private JLabel getLblSearchBill() {
 		if (lblSearchBill == null) {
 			lblSearchBill = new JLabel("Transaction");
-			lblSearchBill.setIcon(new ImageIcon(AdminHome.class.getResource("/javax/swing/plaf/metal/icons/ocean/directory.gif")));
-			lblSearchBill.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblSearchBill.setBounds(236, 30, 95, 14);
+			lblSearchBill.setIcon(new ImageIcon("Image/transaction-icon.png"));
+			lblSearchBill.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblSearchBill.setBounds(253, 30, 115, 14);
+			lblSearchBill.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent me){
+					new BillInfo().setVisible(true);
+					
+				}
+				
+			});
+			
 		}
 		return lblSearchBill;
 	}
@@ -105,18 +112,11 @@ public class AdminHome extends JFrame {
 					new StockUpdate().setVisible(true);
 				}
 			});
-			lblProductInfo.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblProductInfo.setBounds(368, 31, 95, 14);
+			lblProductInfo.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblProductInfo.setBounds(431, 30, 95, 14);
 		}
+		lblProductInfo.setIcon(new ImageIcon("Image/stock-icon.png"));
 		return lblProductInfo;
-	}
-	private JLabel getLblSales() {
-		if (lblSales == null) {
-			lblSales = new JLabel("Sales");
-			lblSales.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblSales.setBounds(497, 31, 78, 14);
-		}
-		return lblSales;
 	}
 	private JButton getBtnExit() {
 		if (btnExit == null) {
@@ -136,8 +136,8 @@ public class AdminHome extends JFrame {
 	private JLabel getLabel_3() {
 		if (label == null) {
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\dell\\workspace\\DarazSales\\Image\\daraz.jpg").getImage().getScaledInstance(62, 50, ICONIFIED)));
-			label.setBounds(10, 11, 62, 48);
+			label.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(92, 50, ICONIFIED)));
+			label.setBounds(10, 11, 92, 48);
 		}
 		return label;
 	}

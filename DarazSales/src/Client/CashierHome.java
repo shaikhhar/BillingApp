@@ -23,7 +23,6 @@ public class CashierHome extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblSearchBill;
 	private JLabel lblProductInfo;
-	private JLabel lblSales;
 	private JButton btnExit;
 	private JLabel label;
 
@@ -47,7 +46,7 @@ public class CashierHome extends JFrame {
 	 * Create the frame.
 	 */
 	public CashierHome() {
-		setTitle("Daraz Bill");
+		setTitle("Billing App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 718, 336);
 		contentPane = new JPanel();
@@ -65,7 +64,6 @@ public class CashierHome extends JFrame {
 			panel.add(getLblNewLabel());
 			panel.add(getLblSearchBill());
 			panel.add(getLblProductInfo());
-			panel.add(getLblSales());
 			panel.add(getBtnExit());
 			panel.add(getLabel_3());
 		}
@@ -83,9 +81,9 @@ public class CashierHome extends JFrame {
 					
 				}
 			});
-			lblNewLabel.setIcon(new ImageIcon(CashierHome.class.getResource("/javax/swing/plaf/metal/icons/ocean/upFolder.gif")));
+			lblNewLabel.setIcon(new ImageIcon("Image/bill-icon.png"));
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblNewLabel.setBounds(140, 30, 103, 14);
+			lblNewLabel.setBounds(154, 30, 103, 14);
 		}
 		return lblNewLabel;
 	}
@@ -93,25 +91,33 @@ public class CashierHome extends JFrame {
 		if (lblSearchBill == null) {
 			lblSearchBill = new JLabel("Search Bill");
 			lblSearchBill.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblSearchBill.setBounds(253, 30, 78, 14);
+			lblSearchBill.setBounds(305, 30, 88, 14);
+			lblSearchBill.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent arg0){
+					BillInfo bi = new BillInfo();
+					bi.setVisible(true);					
+				}
+				
+			});
+			
 		}
+		lblSearchBill.setIcon(new ImageIcon("Image/search-icon.png"));
 		return lblSearchBill;
 	}
 	private JLabel getLblProductInfo() {
 		if (lblProductInfo == null) {
 			lblProductInfo = new JLabel("Product Info");
 			lblProductInfo.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblProductInfo.setBounds(368, 31, 95, 14);
+			lblProductInfo.setBounds(439, 30, 105, 14);
+			lblProductInfo.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent me){
+					ProductInfo pi= new ProductInfo();
+					pi.setVisible(true);
+				}
+			});
 		}
+		lblProductInfo.setIcon(new ImageIcon("Image/info-icon.png"));
 		return lblProductInfo;
-	}
-	private JLabel getLblSales() {
-		if (lblSales == null) {
-			lblSales = new JLabel("Sales");
-			lblSales.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblSales.setBounds(497, 31, 78, 14);
-		}
-		return lblSales;
 	}
 	private JButton getBtnExit() {
 		if (btnExit == null) {
@@ -122,17 +128,19 @@ public class CashierHome extends JFrame {
 					dispose();
 				}
 			});
-			btnExit.setFont(new Font("Sylfaen", Font.BOLD, 11));
-			btnExit.setBounds(620, 27, 62, 17);
+			btnExit.setFont(new Font("Sylfaen", Font.BOLD, 14));
 		}
+		btnExit.setIcon(new ImageIcon("Image/exit-icon.png"));
 		return btnExit;
 	}
 	private JLabel getLabel_3() {
 		if (label == null) {
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\dell\\workspace\\DarazSales\\Image\\daraz.jpg").getImage().getScaledInstance(62, 50, ICONIFIED)));
-			label.setBounds(10, 11, 62, 48);
+			label.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(92, 48, NORMAL)));
+			label.setBounds(10, 11, 92, 48);
 		}
 		return label;
 	}
+	
+	
 }

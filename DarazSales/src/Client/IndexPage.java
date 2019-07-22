@@ -1,6 +1,5 @@
 package Client;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -9,14 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
-import javax.swing.UIManager;
 
 public class IndexPage extends JFrame {
 
@@ -70,7 +67,7 @@ public class IndexPage extends JFrame {
 		if (darazicon == null) {
 			darazicon = new JLabel("New label");
 			darazicon.setBounds(44, 56, 213, 112);
-			darazicon.setIcon(new ImageIcon(new ImageIcon("Image/daraz.jpg").getImage().getScaledInstance(darazicon.getWidth(), darazicon.getHeight(), Image.SCALE_DEFAULT)));
+			darazicon.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(darazicon.getWidth(), darazicon.getHeight(), Image.SCALE_DEFAULT)));
 			
 			
 		}
@@ -88,7 +85,7 @@ public class IndexPage extends JFrame {
 	private JButton getBtnCashierLogin() {
 		if (btnCashierLogin == null) {
 			btnCashierLogin = new JButton("Cashier Login");
-			btnCashierLogin.setForeground(Color.WHITE);
+			btnCashierLogin.setForeground(Color.BLACK);
 			btnCashierLogin.setBackground(Color.ORANGE);
 			btnCashierLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -114,7 +111,7 @@ public class IndexPage extends JFrame {
 	private JButton getBtnAdminLogin() {
 		if (btnAdminLogin == null) {
 			btnAdminLogin = new JButton("Admin Login");
-			btnAdminLogin.setForeground(Color.WHITE);
+			btnAdminLogin.setForeground(Color.BLACK);
 			btnAdminLogin.setBackground(Color.ORANGE);
 			btnAdminLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
