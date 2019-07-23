@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
@@ -214,8 +215,9 @@ public class CashierEdit extends JFrame {
 					dispose();
 				}
 			});
-			btnExit.setBounds(309, 366, 57, 23);
+			btnExit.setBounds(290, 366, 80, 23);
 		}
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 
@@ -307,8 +309,9 @@ public class CashierEdit extends JFrame {
 					}
 				}
 			});
-			btnAdd.setBounds(26, 308, 89, 23);
+			btnAdd.setBounds(26, 308, 105, 23);
 		}
+		btnAdd.setIcon(new ImageIcon(getClass().getClassLoader().getResource("add-icon.png")));
 		return btnAdd;
 	}
 
@@ -336,8 +339,9 @@ public class CashierEdit extends JFrame {
 
 				}
 			});
-			btnUpdate.setBounds(156, 308, 89, 23);
+			btnUpdate.setBounds(156, 308, 105, 23);
 		}
+		btnUpdate.setIcon(new ImageIcon(getClass().getClassLoader().getResource("update-icon.png")));
 		return btnUpdate;
 	}
 
@@ -362,8 +366,9 @@ public class CashierEdit extends JFrame {
 					}
 				}
 			});
-			btnDelete.setBounds(277, 308, 89, 23);
+			btnDelete.setBounds(277, 308, 100, 23);
 		}
+		btnDelete.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Button-Delete-icon.png")));
 		return btnDelete;
 	}
 
@@ -437,7 +442,8 @@ public class CashierEdit extends JFrame {
 					}
 				}
 			});
-			btnSave.setBounds(156, 366, 89, 23);
+			btnSave.setIcon(new ImageIcon(getClass().getClassLoader().getResource("save-icon.png")));
+			btnSave.setBounds(156, 366, 105, 23);
 		}
 		return btnSave;
 	}
