@@ -83,7 +83,7 @@ public class CashierHome extends JFrame {
 					
 				}
 			});
-			lblNewLabel.setIcon(new ImageIcon("Image/bill-icon.png"));
+			lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bill-icon.png")));
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblNewLabel.setBounds(154, 30, 103, 14);
 		}
@@ -118,7 +118,7 @@ public class CashierHome extends JFrame {
 				}
 			});
 		}
-		lblProductInfo.setIcon(new ImageIcon("Image/info-icon.png"));
+		lblProductInfo.setIcon(new ImageIcon(getClass().getClassLoader().getResource("info-icon.png")));
 		return lblProductInfo;
 	}
 	private JButton getBtnExit() {
