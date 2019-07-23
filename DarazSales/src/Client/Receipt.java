@@ -78,15 +78,20 @@ public class Receipt extends JFrame {
 		for (Bill b : Bills) {
 			String item_no = String.valueOf(b.getItem_no());
 			String item_name = b.getItem_name();
+			String qty = String.valueOf(b.getQty());
 			String mrp = String.valueOf(b.getMrp());
 			String disc = String.valueOf(b.getDiscount());
 			String amount = String.valueOf(b.getAmount());
-			billdetail.append("\n" + item_no + "\t" + item_name + "\t\t" + mrp + "\t" + disc + "\t" + amount);
+			if(item_name.length()>15){
+			billdetail.append("\n" + item_no + "\t" + item_name + "\t" + qty+"     "+mrp + "\t" + disc + "\t" + amount);
+			}else{
+				billdetail.append("\n" + item_no + "\t" + item_name + "\t\t" + qty+"     "+mrp + "\t" + disc + "\t" + amount);	
+			}
 			amnt = amnt + Integer.parseInt(amount);
 		}
-		String columns = "\nItem_no\tItem_name\t\tmrp\tdiscount\tamount";
+		String columns = "\nItem_no\tItem_name\t\tqty   mrp\tdiscount\tamount";
 		String Billdetailed = billdetail.toString();
-		String total = "\n\nTotal\t\t\t\t\t\t" + String.valueOf(amnt);
+		String total = "\n\nTotal\t\t\t\t     \t" + String.valueOf(amnt);
 		String footer = "\n\n\n\nTHANK YOU FOR SHOPPING WITH US. HOPE TO SEE YOU AGAIN";
 		textArea.setText(header + billinfo + columns + Billdetailed + total + footer);
 	}
