@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -88,7 +90,7 @@ public class AdminHome extends JFrame {
 	private JLabel getLblSearchBill() {
 		if (lblSearchBill == null) {
 			lblSearchBill = new JLabel("Transaction");
-			lblSearchBill.setIcon(new ImageIcon("Image/transaction-icon.png"));
+			lblSearchBill.setIcon(new ImageIcon(getClass().getClassLoader().getResource("transaction-icon.png")));
 			lblSearchBill.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblSearchBill.setBounds(253, 30, 115, 14);
 			lblSearchBill.addMouseListener(new MouseAdapter() {
@@ -115,7 +117,7 @@ public class AdminHome extends JFrame {
 			lblProductInfo.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblProductInfo.setBounds(431, 30, 95, 14);
 		}
-		lblProductInfo.setIcon(new ImageIcon("Image/stock-icon.png"));
+		lblProductInfo.setIcon(new ImageIcon(getClass().getClassLoader().getResource("stock-icon.png")));
 		return lblProductInfo;
 	}
 	private JButton getBtnExit() {
@@ -136,7 +138,8 @@ public class AdminHome extends JFrame {
 	private JLabel getLabel_3() {
 		if (label == null) {
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(92, 50, ICONIFIED)));
+			Image img = new ImageIcon(getClass().getClassLoader().getResource("main.png")).getImage().getScaledInstance(92, 70, Image.SCALE_DEFAULT);
+			label.setIcon(new ImageIcon(img));
 			label.setBounds(10, 11, 92, 48);
 		}
 		return label;

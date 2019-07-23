@@ -177,7 +177,7 @@ public class StockUpdate extends JFrame {
 			});
 			btnAdd.setBounds(26, 182, 95, 23);
 		}
-		ImageIcon ic = new ImageIcon("Image/add-icon.png");
+		ImageIcon ic = new ImageIcon(getClass().getClassLoader().getResource("add-icon.png"));
 		btnAdd.setIcon(ic);
 		return btnAdd;
 	}
@@ -214,7 +214,7 @@ public class StockUpdate extends JFrame {
 			});
 			btnUpdate.setBounds(25, 227, 95, 23);
 		}
-		ImageIcon ic = new ImageIcon("Image/update-icon.png");
+		ImageIcon ic = new ImageIcon(getClass().getClassLoader().getResource("update-icon.png"));
 		btnUpdate.setIcon(ic);
 		return btnUpdate;
 	}
@@ -336,7 +336,7 @@ public class StockUpdate extends JFrame {
 					}					
 				}
 			});
-			ImageIcon ic = new ImageIcon("Image/Button-Delete-icon.png");
+			ImageIcon ic = new ImageIcon(getClass().getClassLoader().getResource("Button-Delete-icon.png"));
 			btnDelete.setIcon(ic);
 			btnDelete.setBounds(25, 274, 95, 23);
 		}
@@ -352,6 +352,7 @@ public class StockUpdate extends JFrame {
 			});
 			btnExit.setBounds(31, 347, 89, 23);
 		}
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 	private JLabel getLblSearch() {

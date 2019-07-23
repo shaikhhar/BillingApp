@@ -47,7 +47,7 @@ public class BillDaoImpl implements BillDao {
 	public int maxBillno() {
 		Connection con = DB.getDbCon();
 		try {
-			PreparedStatement pstm = con.prepareStatement("select bill_no from  Bill");
+			PreparedStatement pstm = con.prepareStatement("select bill_no from  bill");
 			ResultSet rs = pstm.executeQuery();
 			int max = 0;
 			while (rs.next()) {

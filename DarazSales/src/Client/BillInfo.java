@@ -166,7 +166,7 @@ public class BillInfo extends JFrame {
 				}
 			});
 		}
-		ImageIcon ic = new ImageIcon("Image/search-icon.png");
+		ImageIcon ic = new ImageIcon(getClass().getClassLoader().getResource("search-icon.png"));
 		btnSearch.setIcon(ic);
 		btnSearch.setText("Search");
 		return btnSearch;
@@ -297,7 +297,7 @@ public class BillInfo extends JFrame {
 			});
 			
 		}
-		ImageIcon ic = new ImageIcon("Image/download-icon.png");
+		ImageIcon ic = new ImageIcon(getClass().getClassLoader().getResource("download-icon.png"));
 		btnExportCsv.setIcon(ic);
 		return btnExportCsv;
 	}
@@ -311,6 +311,7 @@ public class BillInfo extends JFrame {
 			});
 			btnExit.setBounds(737, 7, 89, 23);
 		}
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 }

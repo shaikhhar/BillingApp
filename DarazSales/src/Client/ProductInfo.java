@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -152,6 +154,7 @@ public class ProductInfo extends JFrame {
 			});
 			btnExit.setBounds(38, 291, 89, 23);
 		}
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 }

@@ -273,7 +273,7 @@ public class CashierSignup extends JFrame {
 			});
 			btnExit.setBounds(209, 397, 87, 23);
 		}
-		btnExit.setIcon(new ImageIcon("Image/exit-icon.png"));
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 	private JDateChooser getDateCh() {

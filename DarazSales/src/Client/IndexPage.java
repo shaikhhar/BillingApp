@@ -67,7 +67,7 @@ public class IndexPage extends JFrame {
 		if (darazicon == null) {
 			darazicon = new JLabel("New label");
 			darazicon.setBounds(44, 56, 213, 112);
-			darazicon.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(darazicon.getWidth(), darazicon.getHeight(), Image.SCALE_DEFAULT)));
+			darazicon.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("main.png")).getImage().getScaledInstance(darazicon.getWidth(), darazicon.getHeight(), Image.SCALE_DEFAULT)));
 			
 			
 		}

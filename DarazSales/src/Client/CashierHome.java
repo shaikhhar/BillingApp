@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -101,7 +103,7 @@ public class CashierHome extends JFrame {
 			});
 			
 		}
-		lblSearchBill.setIcon(new ImageIcon("Image/search-icon.png"));
+		lblSearchBill.setIcon(new ImageIcon(getClass().getClassLoader().getResource("search-icon.png")));
 		return lblSearchBill;
 	}
 	private JLabel getLblProductInfo() {
@@ -130,13 +132,15 @@ public class CashierHome extends JFrame {
 			});
 			btnExit.setFont(new Font("Sylfaen", Font.BOLD, 14));
 		}
-		btnExit.setIcon(new ImageIcon("Image/exit-icon.png"));
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
+		btnExit.setBounds(585, 27, 97, 23);
 		return btnExit;
 	}
 	private JLabel getLabel_3() {
 		if (label == null) {
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(new ImageIcon("Image/main.png").getImage().getScaledInstance(92, 48, NORMAL)));
+			Image img = new ImageIcon(getClass().getClassLoader().getResource("main.png")).getImage().getScaledInstance(92, 70, Image.SCALE_DEFAULT);
+			label.setIcon(new ImageIcon(img));
 			label.setBounds(10, 11, 92, 48);
 		}
 		return label;

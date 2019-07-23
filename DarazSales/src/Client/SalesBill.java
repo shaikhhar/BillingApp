@@ -283,7 +283,8 @@ public class SalesBill extends JFrame {
 
 				}
 			});
-			ImageIcon img = new ImageIcon("Image/add-icon.png");
+			//ImageIcon img = new ImageIcon("Image/add-icon.png");
+			ImageIcon img = new ImageIcon(getClass().getClassLoader().getResource("add-icon.png"));
 			btnAdd.setIcon(img);
 		}
 		return btnAdd;
@@ -318,7 +319,7 @@ public class SalesBill extends JFrame {
 				}
 			});
 		}
-		ImageIcon img = new ImageIcon("Image/Button-Delete-icon.png");
+		ImageIcon img = new ImageIcon(getClass().getClassLoader().getResource("Button-Delete-icon.png"));
 		btnDelete.setIcon(img);
 		return btnDelete;
 	}
@@ -483,6 +484,7 @@ public class SalesBill extends JFrame {
 			});
 			btnExit.setBounds(27, 414, 89, 23);
 		}
+		btnExit.setIcon(new ImageIcon(getClass().getClassLoader().getResource("exit-icon.png")));
 		return btnExit;
 	}
 }
