@@ -81,10 +81,10 @@ public class Receipt extends JFrame {
 			String mrp = String.valueOf(b.getMrp());
 			String disc = String.valueOf(b.getDiscount());
 			String amount = String.valueOf(b.getAmount());
-			billdetail.append("\n" + item_no + "\t" + item_name + "\t\t" + mrp + "\t" + disc + "\t" + amount);
+			billdetail.append("\n" + item_no + "\t" + item_name + "\t     " + mrp + "\t" + disc + "\t" + amount);
 			amnt = amnt + Integer.parseInt(amount);
 		}
-		String columns = "\nItem_no\tItem_name\t\t\tmrp\tdiscount\tamount";
+		String columns = "\nItem_no\tItem_name\t     tmrp\tdiscount\tamount";
 		String Billdetailed = billdetail.toString();
 		String total = "\n\nTotal\t\t\t\t\t\t" + String.valueOf(amnt);
 		String footer = "\n\n\n\nTHANK YOU FOR SHOPPING WITH US. HOPE TO SEE YOU AGAIN";
